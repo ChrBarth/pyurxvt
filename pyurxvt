@@ -1,0 +1,66 @@
+#!/usr/bin/python3
+"""A simple python script to control urxvt.
+Most useful for testing new settings."""
+
+import argparse
+import os
+import re
+
+parser = argparse.ArgumentParser(description="Sends Commands to urxvt")
+parser.add_argument("-t", "--title", help="sets the title")
+parser.add_argument("-f", "--font", help="sets the font")
+parser.add_argument("-b", "--boldfont", help="sets the bold font")
+parser.add_argument("-i", "--italicfont", help="sets the italic font")
+parser.add_argument("-o", "--bolditalicfont", help="sets the bold-italic font")
+parser.add_argument("-s", "--sample", action="store_true", help="display some sample-text")
+parser.add_argument("-l", "--load", help="load colors from file (in .Xresources format)")
+
+args = parser.parse_args()
+
+if args.title != None:
+    print('Setting title to %s' % args.title)
+    print('\033]0;%s\007' % args.title, end='')
+
+if args.font != None:
+    print('Setting font to %s' % args.font)
+    print('\033]50;%s\007' % args.font, end='')
+
+if args.boldfont != None:
+    print('Setting bold font to %s' % args.boldfont)
+    print('\033]711;%s\007' % args.boldfont, end='')
+
+if args.italicfont != None:
+    print('Setting italic font to %s' % args.italicfont)
+    print('\33]712;%s\007' % args.italicfont, end='')
+
+if args.bolditalicfont != None:
+    print('Setting bold-italic font to %s' % args.bolditalicfont)
+    print('\33]713;%s\007' % args.bolditalicfont, end='')
+
+if args.sample:
+    print('Sample text:\n')
+    print('\33[1mBold text  \33[3mBoldItalic text\33[0m  \33[3mItalic text  \33[0mNormal text')
+    for color in range(0,8):
+        print('\33[%dmColor%02d\33[0m  \33[%dmColor%02d\33[0m' % \
+            (color+30, color, color+90, color+8))
+
+if args.load != None:
+    resfile = args.load
+    print('Loading resources from %s' % resfile)
+    if os.path.isfile(resfile):
+        with open(resfile) as f:
+            pattern_fg = re.compile('.*foreground:.*(\#[0-9a-fA-F]{6}).*')
+            pattern_bg = re.compile('.*background:.*(\#[0-9a-fA-F]{6}).*')
+            pattern_color = re.compile('.*color([0-9]{1,2}).*:.*(\#[0-9a-fA-F]{6}).*')
+            for l in f:
+                mf = re.search(pattern_fg,l)
+                if mf:
+                    print('\33]10;%s\007' % mf.group(1), end='')
+                mb = re.search(pattern_bg,l)
+                if mb:
+                    print('\33]11;%s\007' % mb.group(1), end='')
+                mc = re.search(pattern_color,l)
+                if mc:
+                    print('\33]4;%s;%s\007' % (mc.group(1), mc.group(2)), end='')
+
+
