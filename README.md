@@ -10,7 +10,8 @@ fonts are restored.
 
 ## Usage:
 
-'''pyurxvt [-h] [-t TITLE] [-f FONT] [-b BOLDFONT] [-i ITALICFONT]
+```
+pyurxvt [-h] [-t TITLE] [-f FONT] [-b BOLDFONT] [-i ITALICFONT]
                [-o BOLDITALICFONT] [-s] [-l LOAD]
 
 Sends Commands to urxvt
@@ -27,4 +28,5 @@ optional arguments:
   -o BOLDITALICFONT, --bolditalicfont BOLDITALICFONT
                         sets the bold-italic font
   -s, --sample          display some sample-text
-  -l LOAD, --load LOAD  load colors from file (in .Xresources format)'''
+  -l LOAD, --load LOAD  load colors from file (in .Xresources format)
+```
