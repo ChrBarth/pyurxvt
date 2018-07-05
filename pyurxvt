@@ -62,5 +62,3 @@ if args.load != None:
                 mc = re.search(pattern_color,l)
                 if mc:
                     print('\33]4;%s;%s\007' % (mc.group(1), mc.group(2)), end='')
-
-

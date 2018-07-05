@@ -8,6 +8,9 @@ colortheme). No changes made are permanent so if something gets
 messed up, you can just close and re-open urxvt and the original colors and
 fonts are restored.
 
+_NOTE_: This does not work inside a tmux-session! At least not on my machine with my
+tmux- and urxvt-settings.
+
 ## Usage:
 
 ```
