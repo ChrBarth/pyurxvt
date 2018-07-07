@@ -36,4 +36,4 @@ optional arguments:
 
 ### Example:
 
-    + `pyurxvt -f "xft:Courier New"` : Sets font to Courier New
+  + `pyurxvt -f "xft:Courier New"` : Sets font to Courier New
