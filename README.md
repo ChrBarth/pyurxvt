@@ -33,3 +33,7 @@ optional arguments:
   -s, --sample          display some sample-text
   -l LOAD, --load LOAD  load colors from file (in .Xresources format)
 ```
+
+##Example:
+
+    + `pyurxvt -f "xft:Courier New"` : Sets font to Courier New
